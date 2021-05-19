@@ -2,9 +2,9 @@ import React from 'react'
 
 const HomeScreen = () => {
     return (
-    <div className="container">
-        <h1> Home Screen </h1>
-    </div>
+        <div className="container">
+            <h1> Home Screen </h1>
+        </div>
     )
 }
 

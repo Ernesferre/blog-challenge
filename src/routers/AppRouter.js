@@ -1,4 +1,3 @@
-import React from 'react'
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -6,25 +5,23 @@ import {
   Route,
 
 } from "react-router-dom";
-import { Navbar } from '../components/Navbar';
+
+import LoginScreen from '../components/LoginScreen';
+import DashboardRoutes from "./DashboardRoutes";
+
 
 
 const AppRouter = () => {
     return (
         <Router>
             <div>
-                <Navbar />
-    
+                
                 <Switch>
-                <Route path="/about">
-                    <About />
-                </Route>
-                <Route path="/users">
-                    <Users />
-                </Route>
-                <Route path="/">
-                    <Home />
-                </Route>
+
+                    <Route exact path="/login" component={ LoginScreen } />
+
+                    <Route path="/" component={ DashboardRoutes } />
+                
                 </Switch>
             </div>
         </Router>

@@ -1,16 +1,11 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-export const Navbar = () => {
+const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
-            <Link 
-                className="navbar-brand" 
-                to="/"
-            >
-                Asociaciones
-            </Link>
+            
 
             <div className="navbar-collapse">
                 <div className="navbar-nav">
@@ -19,18 +14,18 @@ export const Navbar = () => {
                         activeClassName="active"
                         className="nav-item nav-link" 
                         exact
-                        to="/marvel"
+                        to="/home"
                     >
-                        Marvel
+                        Home
                     </NavLink>
 
                     <NavLink 
                         activeClassName="active"
                         className="nav-item nav-link" 
                         exact
-                        to="/dc"
+                        to="/Form"
                     >
-                        DC
+                        Edit Form
                     </NavLink>
                 </div>
             </div>
@@ -50,3 +45,5 @@ export const Navbar = () => {
         </nav>
     )
 }
+
+export default Navbar

@@ -2,7 +2,9 @@ import React from 'react'
 
 const FormScreen = () => {
     return (
-        <h1>Form Screen</h1>
+        <div className="container">
+            <h1>Form Screen</h1>
+        </div>
     )
 }
 

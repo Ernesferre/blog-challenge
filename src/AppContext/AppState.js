@@ -8,9 +8,12 @@ import axios from 'axios';
 const AppState = ({children} ) => {
 
     const initialState = {
+        Post: {},
+        NewPost: {},
         AllPosts: [],
         token: localStorage.getItem('token') || null, 
-        autenticado: false
+        autenticado: false,
+        AddPost: false
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -33,7 +36,7 @@ const AppState = ({children} ) => {
     const findPosts = async () => {  
         try {
             const respuesta = await axios.get('https://jsonplaceholder.typicode.com/posts');
-            // console.log(respuesta);
+            console.log(respuesta);
             dispatch({
             type: types.get_posts, payload: respuesta.data
         })
@@ -50,15 +53,88 @@ const AppState = ({children} ) => {
 
 
 
+    const find_OnePost = async (id) => {
+        console.log(id)
+        try {
+            const respuesta = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+            console.log(respuesta.data);
+            dispatch ({
+            type: types.get_OnePost, payload: respuesta.data
+        })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const CreatePost = async (data, AllPosts) => {
+        try {
+            const Response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: {
+                    userId: 1,
+                    id: AllPosts.length + 1,
+                    title: (data.title),
+                    body: (data.body),
+                    
+                },
+                
+            }) 
+            dispatch({
+            type: types.create_post, payload: Response.data
+        })
+        console.log(Response.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    
+
+    const editPost = async (id, data) => {
+        console.log(id)
+        try {
+            const respuesta = await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method: 'PUT',
+                body: {
+                    userId: 1,
+                    id: id,
+                    title: (data.title),
+                    body: (data.body),     
+                }})
+            
+            console.log(respuesta.data);
+            dispatch ({
+            type: types.edit_post, payload: respuesta.data
+        })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const logout = () => {
+        dispatch({type: types.logout})   
+    }
+
+
+
+
 
     
     return (
         <AppContext.Provider value= {{
+            Post: state.Post,
             AllPosts: state.AllPosts,
             token: state.token,
             autenticado: state.autenticado,
+            AddPost: state.AddPost,
+            NewPost: state.Post,
             login,
             findPosts,
+            find_OnePost,
+            CreatePost,
+            editPost,
+            logout
         
 
          }}>

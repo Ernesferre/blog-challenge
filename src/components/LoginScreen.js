@@ -1,19 +1,23 @@
 import React from 'react'
 import {useContext, useState, useEffect} from 'react';
+import {useHistory} from "react-router-dom";
 import { Formik, Form } from 'formik';
 import AppContext from '../AppContext/AppContext';
 import TextField from './TextField';
 import * as Yup from 'yup';
-// import axios from 'axios';
 
 
-const LoginScreen = ({ history }) => {
+
+const LoginScreen = () => {
 
     const context = useContext(AppContext);
 
     const { login, autenticado, token } = context
 
-    console.log(login);
+    // console.log(login);
+
+    const history = useHistory();
+    
 
 
     const validate = Yup.object({
@@ -33,6 +37,7 @@ const LoginScreen = ({ history }) => {
             console.log(token)
             history.push('/')
         } 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [autenticado])
 
     function handleReset () {
@@ -55,9 +60,12 @@ const LoginScreen = ({ history }) => {
                 
                 console.log(values);
                 console.log("click")
-                setAut(true);
                 login(values)
-                console.log(autenticado)
+
+                if (!autenticado) {
+                    setAut(true); 
+                }
+                
             }}
             
 
@@ -66,20 +74,23 @@ const LoginScreen = ({ history }) => {
             
                 {formik => (
                     <div>
-                        <h1 className="my-4.font-weight-bold-display-4 text-center"> Login </h1>
+                        <h1 className="my-4.font-weight-bold-display-4 text-center "> Login </h1>
                         
                         <Form>
 
                             <TextField label="Email" name="email" type="email" />
                             <TextField label="Password" name="password" type="password" />
-                            <button className="btn btn-success mt-3 ml-3 " type="submit">Enter</button>
-                            <button className="btn btn-danger mt-3 ml-5 " type="reset" onClick={handleReset}>Reset</button>
 
+                            <div className="d-flex justify-content-around">
+                                <button className="btn btn-success mt-3 ml-3 p-2 " type="submit">Enter</button>
+                                <button className="btn btn-danger mt-3 ml-5 p-2" type="reset" onClick={handleReset}>Reset</button>
+                            </div>
                         
+                            { aut &&  <label className="text-danger text center mx-auto">  Los datos igresados son incorrectos </label>}
 
                         </Form>
 
-                        { aut &&  <label className="text-danger mx-auto">  El Email igresado es incorrecto </label>}
+                        
 
                     </div>
                 )}

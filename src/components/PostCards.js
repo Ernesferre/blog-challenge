@@ -1,23 +1,66 @@
 import React from 'react'
+import {useHistory} from "react-router-dom";
+import AppContext from '../AppContext/AppContext';
+import {useContext} from 'react';
 
 const PostCards = ({ item }) => {
+
+    const context = useContext(AppContext);
+
+    const { find_OnePost, editPost } = context
+
+    const history = useHistory();
+
+    const handleDetail = (id) => {
+        console.log(id);
+        find_OnePost(id);
+        history.push("/detail")
+    
+    } 
+
+    const handleEdit = (id) => {
+        console.log(id);
+        editPost(id);
+        history.push("/edit")
+    }
+
     return (
-        <div className="card ms-3 mb-3 mt-5 d-flex flex-wrap bg-success p-2" style={ { maxWidth: 150 }}>
+
+        
+
+
+
+        <div className="card ms-3 mb-3 mt-5 d-flex flex-wrap p-2" style={ { maxWidth: 150 }}>
             
-                    <div className="card-body">
+                        <div className="card-body">
                         
-                        <p className="card-title text-center mt-3"> {item.title} </p> 
+                             <p className="card-title text-center mt-3"> {item.title} </p> 
                         
-                    </div>
+                        </div>
             
                          
+                        <div className="btn-group" role="group" >
+                            <div className="card-body text-center">               
+                                <button  
+                                className="btn btn-warning btn-sm text-center mb-2"
+                                onClick= {() => handleDetail(item.id)}          
+                                >Post Details
+                            </button>
 
-                    <div className="card-body text-center mb-3">               
-                        <button 
-                            className="btn btn-warning card-text text-center"
-                            // onClick= {() => handleClick(img.id)}          
-                            >Detalle
-                        </button>
+                            <button 
+                                className="btn btn-primary btn-sm text-center mb-2"
+                                onClick= {() => handleEdit(item.id)}          
+                                >Edit Post
+                            </button>
+
+                            <button 
+                                className="btn btn-danger btn-sm text-center"
+                                // onClick= {() => handleClick(img.id)}          
+                                >Delete Post
+                            </button>
+                        </div>
+
+
                     </div>    
 
             </div>

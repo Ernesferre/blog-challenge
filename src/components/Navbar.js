@@ -1,13 +1,23 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import {  NavLink } from 'react-router-dom'
+import AppContext from '../AppContext/AppContext';
+import {useContext} from 'react';
 
 const Navbar = () => {
+
+    const { logout }  = useContext(AppContext);
+    
+    const handleLogout = () => {
+        logout();
+    }
+
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
             
 
-            <div className="navbar-collapse">
+            <div className="container navbar-collapse">
                 <div className="navbar-nav">
 
                     <NavLink 
@@ -25,16 +35,17 @@ const Navbar = () => {
                         exact
                         to="/Form"
                     >
-                        Edit Form
+                        Create Post
                     </NavLink>
                 </div>
             </div>
 
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                <ul className="navbar-nav ml-auto">
+            <div className="ml-5">
+                <ul className="navbar-nav mr-5">
                     <NavLink 
                         activeClassName="active"
-                        className="nav-item nav-link" 
+                        className="nav-item nav-link mr-5" 
+                        onClick={handleLogout}
                         exact
                         to="/login"
                     >

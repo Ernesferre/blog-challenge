@@ -2,22 +2,10 @@ import React from 'react'
 import { Formik, Form } from 'formik';
 import TextField from './TextField';
 import * as Yup from 'yup';
-import AppContext from '../AppContext/AppContext';
-import {useContext} from 'react';
 
 
-const FormScreen = () => {
 
-    // const [aut, setAut] = useState(false);
-
-    const context = useContext(AppContext);
-
-    const { CreatePost, AddPost, NewPost, AllPosts } = context
-
-    // console.log(AllPosts);
-    console.log(AddPost);
-    console.log(NewPost);
-    console.log(AllPosts);
+const EditScreen = () => {
 
     
     const validate = Yup.object({
@@ -27,7 +15,7 @@ const FormScreen = () => {
             .required("Body is required"),
     })
 
-    // function handleCreate () {
+    // function handleEdit () {
     //     setAut(false)
     // }
     
@@ -57,7 +45,7 @@ const FormScreen = () => {
 
             console.log("click")
             
-            CreatePost(values, AllPosts);
+            // CreatePost(values, AllPosts);
             
         }}
         
@@ -67,17 +55,19 @@ const FormScreen = () => {
         
             {formik => (
                 <div>
-                    <h1 className="my-4.font-weight-bold-display-4 text-center"> New Post </h1>
+                    <h1 className="my-4.font-weight-bold-display-4 text-center"> Edit Post </h1>
                     
                     <Form>
 
                         <TextField label="Title" name="title" type="text" />
                         <TextField label="Body" name="body" type="text" />
+                        <button className="btn btn-success mt-3 ml-3 " type="submit" >Edit</button>
+                        <button className="btn btn-danger mt-3 ml-5 " type="reset">Clean</button>
+                        
+                        
+                     
 
-                        <div className="d-flex justify-content-around">
-                            <button className="btn btn-success mt-3 ml-3 p-2" type="submit" >Create</button>
-                            <button className="btn btn-danger mt-3 ml-5 p-2" type="reset" >Clean</button>
-                        </div> 
+                    
 
                     </Form>
 
@@ -94,4 +84,4 @@ const FormScreen = () => {
     )
 }
 
-export default FormScreen
+export default EditScreen

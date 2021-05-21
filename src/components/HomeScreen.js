@@ -1,6 +1,6 @@
 import React from 'react'
 import AppContext from '../AppContext/AppContext';
-import {useContext, useState, useEffect} from 'react';
+import {useContext} from 'react';
 import PostCards from './PostCards';
 
 const HomeScreen = () => {
@@ -17,7 +17,7 @@ const HomeScreen = () => {
     return (
         <div className="container">
             
-            <h1 className="mt-3 text-center"> Home </h1>
+            <h1 className="mt-3 text-center"> All Posts </h1>
 
             <div className="d-flex flex-wrap justify-content-center">   
                 { 

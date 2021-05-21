@@ -7,7 +7,7 @@ const PostCards = ({ item }) => {
 
     const context = useContext(AppContext);
 
-    const { find_OnePost, editPost } = context
+    const { find_OnePost, editPost, deletePost } = context
 
     const history = useHistory();
 
@@ -23,6 +23,14 @@ const PostCards = ({ item }) => {
         editPost(id);
         history.push("/edit")
     }
+
+    const handleDelete = (id) => {
+        console.log(id);
+        deletePost(id);
+    }
+
+
+
 
     return (
 
@@ -55,7 +63,7 @@ const PostCards = ({ item }) => {
 
                             <button 
                                 className="btn btn-danger btn-sm text-center"
-                                // onClick= {() => handleClick(img.id)}          
+                                onClick= {() => handleDelete(item.id)}          
                                 >Delete Post
                             </button>
                         </div>

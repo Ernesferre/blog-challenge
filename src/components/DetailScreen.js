@@ -20,18 +20,23 @@ function handleReturn () {
 
     return (
     <div className="container">
-        <div className="container">
-            <h1> Post Detail </h1>
+        <h1 className="container text-center mt-2"> Post Detail </h1>
+
+        <div className="container card">
+
+            <ul className="list-group list-group-flush">
             
-                <p> User: {Post.userId} </p>
-                <p> Id: {Post.id} </p>
-                <p> Title: {Post.title} </p>
-                <p> Body: {Post.body} </p>
+                <li className="list-group-item"> <b>User: </b> {Post.userId} </li>
+                <li className="list-group-item"> <b>Id: </b> {Post.id} </li>
+                <li className="list-group-item"> <b>Title: </b> {Post.title} </li>
+                <li className="list-group-item"> <b>Body: </b> {Post.body} </li>
+
+            </ul>
 
 
         </div>
 
-        <button className="btn btn-warning" onClick={handleReturn}> Go Back </button>
+        <button className="btn btn-warning mx-auto justify-content-center mt-2" onClick={handleReturn}> Go Back </button>
     </div>
     )
 }

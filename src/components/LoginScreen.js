@@ -45,7 +45,7 @@ const LoginScreen = () => {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container  mt-5">
             <div className="col-md-4 mx-auto">
             <Formik
                 initialValues={{
@@ -85,7 +85,7 @@ const LoginScreen = () => {
                                 <button className="btn btn-danger mt-3 ml-5 p-2" type="reset" onClick={handleReset}>Reset</button>
                             </div>
                         
-                            { aut &&  <label className="text-danger text center mx-auto">  Los datos igresados son incorrectos </label>}
+                            
 
                         </Form>
 
@@ -94,7 +94,12 @@ const LoginScreen = () => {
                     </div>
                 )}
             </Formik>
+
+            { aut &&  <p className="text-danger text-center mt-3"> Incorrect data entered ! </p>}
+
             </div>
+
+            
         </div>
 
                 

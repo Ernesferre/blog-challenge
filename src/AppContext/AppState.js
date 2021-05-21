@@ -13,7 +13,8 @@ const AppState = ({children} ) => {
         AllPosts: [],
         token: localStorage.getItem('token') || null, 
         autenticado: false,
-        AddPost: false
+        AddPost: false,
+        isCreated: false
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -67,13 +68,13 @@ const AppState = ({children} ) => {
     }
 
 
-    const CreatePost = async (data, AllPosts) => {
+    const CreatePost = async (data) => {
         try {
             const Response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST',
                 body: {
                     userId: 1,
-                    id: AllPosts.length + 1,
+                    id: 101,
                     title: (data.title),
                     body: (data.body),
                     
@@ -88,6 +89,8 @@ const AppState = ({children} ) => {
             console.log(error);
         }
     }
+
+    
 
     
 
@@ -116,6 +119,23 @@ const AppState = ({children} ) => {
         dispatch({type: types.logout})   
     }
 
+    
+    const deletePost = (id) => {
+        console.log(id)
+        try {
+            const respuesta = fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+                method: 'DELETE',
+              });
+            console.log(respuesta);
+            dispatch ({
+            type: types.delete_post, payload: respuesta.data
+        })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+
 
 
 
@@ -129,12 +149,14 @@ const AppState = ({children} ) => {
             autenticado: state.autenticado,
             AddPost: state.AddPost,
             NewPost: state.Post,
+            isCreated: state.Post,
             login,
             findPosts,
             find_OnePost,
             CreatePost,
             editPost,
-            logout
+            logout,
+            deletePost
         
 
          }}>

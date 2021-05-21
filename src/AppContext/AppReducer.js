@@ -36,7 +36,8 @@ const AppReducer = (state, action) => {
             return {
                 ...state,
                 NewPost: action.payload,
-                AddPost: true
+                AddPost: true,
+                isCreated: true
             }
 
             case types.edit_post:
@@ -54,6 +55,13 @@ const AppReducer = (state, action) => {
                 token:  null, 
                 autenticado: false
                 
+            }
+
+            case types.delete_post:
+                console.log(action.payload)
+            return {
+                ...state,
+                Post: action.payload
             }
 
 

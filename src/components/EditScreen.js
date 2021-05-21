@@ -61,9 +61,11 @@ const EditScreen = () => {
 
                         <TextField label="Title" name="title" type="text" />
                         <TextField label="Body" name="body" type="text" />
-                        <button className="btn btn-success mt-3 ml-3 " type="submit" >Edit</button>
-                        <button className="btn btn-danger mt-3 ml-5 " type="reset">Clean</button>
-                        
+
+                        <div className="d-flex justify-content-around">
+                            <button className="btn btn-success mt-3 ml-3 " type="submit" >Edit</button>
+                            <button className="btn btn-danger mt-3 ml-5 " type="reset">Clean</button>
+                        </div>
                         
                      
 

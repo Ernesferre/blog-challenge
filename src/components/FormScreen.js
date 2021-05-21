@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import TextField from './TextField';
 import * as Yup from 'yup';
 import AppContext from '../AppContext/AppContext';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 
 
 const FormScreen = () => {
@@ -12,12 +12,14 @@ const FormScreen = () => {
 
     const context = useContext(AppContext);
 
-    const { CreatePost, AddPost, NewPost, AllPosts } = context
+    const { CreatePost, AddPost, NewPost, AllPosts, isCreated } = context
+
+    const [aut, setAut] = useState(false)
 
     // console.log(AllPosts);
-    console.log(AddPost);
-    console.log(NewPost);
-    console.log(AllPosts);
+    // console.log(AddPost);
+    // console.log(NewPost);
+    // console.log(AllPosts);
 
     
     const validate = Yup.object({
@@ -51,13 +53,15 @@ const FormScreen = () => {
 
         onSubmit={values => {
 
-            console.log(values.title);
+            // console.log(values.title);
+            // console.log(values.body);
+            // console.log("click")
             
-            console.log(values.body);
+            CreatePost(values);
 
-            console.log("click")
-            
-            CreatePost(values, AllPosts);
+            if (isCreated) {
+                setAut(true); 
+            }
             
         }}
         
@@ -88,6 +92,9 @@ const FormScreen = () => {
                 </div>
             )}
         </Formik>
+
+        { aut &&  <p className="text-success text-center mt-3"> Post Created ! </p>}   
+
         </div>
     </div>
 

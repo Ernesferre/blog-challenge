@@ -8,6 +8,8 @@ import {
 
 import LoginScreen from '../components/LoginScreen';
 import DashboardRoutes from "./DashboardRoutes";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 
 
@@ -18,9 +20,9 @@ const AppRouter = () => {
                 
                 <Switch>
 
-                    <Route exact path="/login" component={ LoginScreen } />
+                    <PublicRoute exact path="/login" component={ LoginScreen } />
 
-                    <Route path="/" component={ DashboardRoutes } />
+                    <PrivateRoute path="/" component={ DashboardRoutes } />
                 
                 </Switch>
             </div>

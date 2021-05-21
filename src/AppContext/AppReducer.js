@@ -51,7 +51,9 @@ const AppReducer = (state, action) => {
                 localStorage.removeItem('token')
             return {
                 ...state,
-                token:  null, autenticado: false
+                token:  null, 
+                autenticado: false
+                
             }
 
 

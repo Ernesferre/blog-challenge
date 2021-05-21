@@ -8,17 +8,16 @@ import * as Yup from 'yup';
 
 
 
+
+
 const LoginScreen = () => {
 
     const context = useContext(AppContext);
-
     const { login, autenticado, token } = context
 
-    // console.log(login);
 
     const history = useHistory();
     
-
 
     const validate = Yup.object({
         email: Yup.string()
@@ -59,7 +58,7 @@ const LoginScreen = () => {
             onSubmit={values => {
                 
                 console.log(values);
-                console.log("click")
+                console.log(autenticado)
                 login(values)
 
                 if (!autenticado) {
